@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/vertical_margin"
+    android:layout_marginEnd="@dimen/horizontal_margin"
+    android:layout_marginLeft="@dimen/horizontal_margin"
+    android:layout_marginRight="@dimen/horizontal_margin"
+    android:layout_marginStart="@dimen/horizontal_margin"
+    android:layout_marginTop="@dimen/vertical_margin"
+    card_view:cardCornerRadius="2dp"
+    card_view:cardElevation="4dp"
+    card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_note_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/tv_note_time"
+            android:layout_toStartOf="@id/tv_note_time"
+            android:text="Buy tickets"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_note_short_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_note_title"
+            android:layout_toLeftOf="@+id/tv_note_time"
+            android:layout_toStartOf="@id/tv_note_time"
+            android:singleLine="true"
+            android:text="Call to air ticket office..."
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@id/tv_note_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="09:15"
+            android:textSize="22sp" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
