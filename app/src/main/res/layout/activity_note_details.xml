@@ -1,37 +1,40 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.activity.NotesActivity">
+<layout>
 
-    <include layout="@layout/app_bar" />
-
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/activity_vertical_margin"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        tools:context=".view.activity.NotesActivity">
 
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/et_note_title"
+        <include layout="@layout/app_bar" />
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:hint="@string/hint_title"
-            android:layout_marginBottom="16dp"/>
+            android:layout_height="match_parent"
+            android:padding="@dimen/activity_vertical_margin"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/ed_note_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/et_note_title"
-            android:background="@android:color/transparent"
-            android:hint="@string/hint_note_description"
-            android:textSize="16sp"/>
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/et_note_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/hint_title"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-    </RelativeLayout>
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/ed_note_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_note_title"
+                android:background="@android:color/transparent"
+                android:hint="@string/hint_note_description"
+                android:textSize="16sp" />
 
-</android.support.design.widget.CoordinatorLayout>
+        </RelativeLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>
