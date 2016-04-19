@@ -2,7 +2,6 @@ package com.mlsdev.serhii.ormlitetestapp.view.activity;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 
@@ -12,7 +11,7 @@ import com.mlsdev.serhii.ormlitetestapp.model.Note;
 import com.mlsdev.serhii.ormlitetestapp.view.adapter.NotesAdapter;
 import com.mlsdev.serhii.ormlitetestapp.viewmodel.NotesViewModel;
 
-public class NotesActivity extends AppCompatActivity implements NotesAdapter.OnItemClickListener {
+public class NotesActivity extends BaseActivity implements NotesAdapter.OnItemClickListener {
     private ActivityNotesBinding binding;
     private NotesViewModel viewModel;
 
@@ -23,6 +22,7 @@ public class NotesActivity extends AppCompatActivity implements NotesAdapter.OnI
         binding = DataBindingUtil.setContentView(this, R.layout.activity_notes);
         binding.setViewModel(viewModel);
         initNotesRecyclerView();
+        initToolBar(false);
     }
 
     private void initNotesRecyclerView() {
