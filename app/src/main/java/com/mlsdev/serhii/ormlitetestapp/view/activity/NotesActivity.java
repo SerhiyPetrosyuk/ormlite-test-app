@@ -8,10 +8,11 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.mlsdev.serhii.ormlitetestapp.R;
 import com.mlsdev.serhii.ormlitetestapp.databinding.ActivityNotesBinding;
+import com.mlsdev.serhii.ormlitetestapp.model.Note;
 import com.mlsdev.serhii.ormlitetestapp.view.adapter.NotesAdapter;
 import com.mlsdev.serhii.ormlitetestapp.viewmodel.NotesViewModel;
 
-public class NotesActivity extends AppCompatActivity {
+public class NotesActivity extends AppCompatActivity implements NotesAdapter.OnItemClickListener {
     private ActivityNotesBinding binding;
     private NotesViewModel viewModel;
 
@@ -28,7 +29,8 @@ public class NotesActivity extends AppCompatActivity {
         binding.rvNotes.setHasFixedSize(true);
         binding.rvNotes.setLayoutManager(new LinearLayoutManager(this));
         binding.rvNotes.setItemAnimator(new DefaultItemAnimator());
-        NotesAdapter notesAdapter = new NotesAdapter();
+        NotesAdapter notesAdapter = new NotesAdapter(this, this);
+        notesAdapter.setOnItemClickListener(this);
         binding.rvNotes.setAdapter(notesAdapter);
         viewModel.setNotesAdapter(notesAdapter);
     }
@@ -43,5 +45,10 @@ public class NotesActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         viewModel.onStop();
+    }
+
+    @Override
+    public void onItemClick(Note note) {
+        viewModel.onEditNote(note);
     }
 }

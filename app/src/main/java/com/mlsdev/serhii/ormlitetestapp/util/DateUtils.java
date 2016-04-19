@@ -6,7 +6,7 @@ import java.util.Calendar;
 public class DateUtils {
 
     public static String getFormattedDate(long time) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(time);
         return dateFormat.format(calendar.getTime());

@@ -1,5 +1,12 @@
 <layout>
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mlsdev.serhii.ormlitetestapp.viewmodel.NoteDetailsViewModel" />
+    </data>
+
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -22,17 +29,37 @@
                 android:layout_marginBottom="16dp"
                 android:background="@android:color/transparent"
                 android:hint="@string/hint_title"
+                android:text="@{viewModel.title}"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/ed_note_details"
+                android:id="@+id/et_note_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/et_note_title"
                 android:background="@android:color/transparent"
                 android:hint="@string/hint_note_description"
+                android:text="@{viewModel.description}"
                 android:textSize="16sp" />
+
+            <View
+                android:id="@+id/dashed_divider"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_below="@id/et_note_details"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:background="@drawable/dashed_line"
+                android:layerType="software" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/dashed_divider"
+                android:text="@{viewModel.lastEditingDate}" />
 
         </RelativeLayout>
 
