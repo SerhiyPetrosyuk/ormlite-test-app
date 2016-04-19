@@ -12,4 +12,8 @@ public class DateUtils {
         return dateFormat.format(calendar.getTime());
     }
 
+    public static long getCurrentDateTime() {
+        return Calendar.getInstance().getTimeInMillis();
+    }
+
 }

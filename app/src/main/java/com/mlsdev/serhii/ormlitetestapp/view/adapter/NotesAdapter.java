@@ -48,4 +48,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
             noteItemBinding = DataBindingUtil.getBinding(itemView);
         }
     }
+
+    public void setData(List<Note> noteList) {
+        this.noteList = noteList;
+        notifyDataSetChanged();
+    }
 }

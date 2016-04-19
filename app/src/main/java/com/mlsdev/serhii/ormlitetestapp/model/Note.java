@@ -6,11 +6,21 @@ import com.j256.ormlite.field.DatabaseField;
  * Created by serhii on 04.04.16.
  */
 public class Note {
-    @DatabaseField(generatedId = true)
+    public static final String ID = "id";
+    public static final String TITLE = "title";
+    public static final String DESCRIPTION = "description";
+    public static final String CREATED_DATE = "create_date";
+    public static final String LAST_EDITED_DATE = "last_edit_date";
+
+    @DatabaseField(generatedId = true, columnName = ID)
     private int id;
+    @DatabaseField(columnName = TITLE)
     private String title;
+    @DatabaseField(columnName = DESCRIPTION)
     private String description;
+    @DatabaseField(columnName = CREATED_DATE)
     private long createDate;
+    @DatabaseField(columnName = LAST_EDITED_DATE)
     private long lastEditDate;
 
     public void setId(int id) {
