@@ -50,8 +50,7 @@ public class NoteDetailsViewModel extends BaseViewModel {
 
         try {
             Dao<Note, Integer> notesDao = getDatabaseHelper().getNotesDao();
-            boolean atListOneFieldNotEmpty = !TextUtils.isEmpty(this.title.get()) ||
-                    !TextUtils.isEmpty(this.description.get());
+            boolean atListOneFieldNotEmpty = !TextUtils.isEmpty(title) || !TextUtils.isEmpty(description);
 
             if (isUpdating && atListOneFieldNotEmpty) {
                 newNote.setId(note.getId());
