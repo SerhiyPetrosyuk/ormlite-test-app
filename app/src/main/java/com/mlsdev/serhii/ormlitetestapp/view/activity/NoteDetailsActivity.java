@@ -3,6 +3,7 @@ package com.mlsdev.serhii.ormlitetestapp.view.activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mlsdev.serhii.ormlitetestapp.R;
@@ -42,6 +43,12 @@ public class NoteDetailsActivity extends BaseActivity {
         Note noteForEditing = intent.getParcelableExtra(BaseViewModel.EXTRA_NOTE);
         if (noteForEditing != null)
             viewModel.setData(noteForEditing);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.note_details_menu, menu);
+        return true;
     }
 
     @Override

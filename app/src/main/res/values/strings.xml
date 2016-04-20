@@ -3,4 +3,6 @@
     <string name="hint_title">Title</string>
     <string name="hint_note_description">Note</string>
     <string name="edited">Edited</string>
+    <string name="delete_menu_item">Delete</string>
+    <string name="share_menu_item">Share</string>
 </resources>
