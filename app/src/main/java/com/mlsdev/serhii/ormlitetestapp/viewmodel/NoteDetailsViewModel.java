@@ -39,6 +39,13 @@ public class NoteDetailsViewModel extends BaseViewModel {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (note == null)
+            lastEditingDate.set(DateUtils.getFormattedDate(DateUtils.getCurrentDateTime()));
+    }
+
     public void onPause(String title, String description) {
         insertUpdateNewNote(title, description);
     }
@@ -51,11 +58,16 @@ public class NoteDetailsViewModel extends BaseViewModel {
         try {
             Dao<Note, Integer> notesDao = getDatabaseHelper().getNotesDao();
             boolean atListOneFieldNotEmpty = !TextUtils.isEmpty(title) || !TextUtils.isEmpty(description);
+            boolean isDataChanged = !title.equals(this.title.get()) || !description.equals(this.description.get());
 
             if (isUpdating && atListOneFieldNotEmpty) {
-                newNote.setId(note.getId());
-                newNote.setLastEditDate(DateUtils.getCurrentDateTime());
-                notesDao.update(newNote);
+
+                if (isDataChanged) {
+                    newNote.setId(note.getId());
+                    newNote.setLastEditDate(DateUtils.getCurrentDateTime());
+                    newNote.setCreateDate(note.getCreateDate());
+                    notesDao.update(newNote);
+                }
             } else if (atListOneFieldNotEmpty) {
                 newNote.setCreateDate(DateUtils.getCurrentDateTime());
                 newNote.setLastEditDate(newNote.getCreateDate());

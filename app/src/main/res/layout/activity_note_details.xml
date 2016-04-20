@@ -29,6 +29,7 @@
                 android:layout_marginBottom="16dp"
                 android:background="@android:color/transparent"
                 android:hint="@string/hint_title"
+                android:inputType="textCapSentences"
                 android:text="@{viewModel.title}"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -40,6 +41,7 @@
                 android:layout_below="@id/et_note_title"
                 android:background="@android:color/transparent"
                 android:hint="@string/hint_note_description"
+                android:inputType="textCapSentences"
                 android:text="@{viewModel.description}"
                 android:textSize="16sp" />
 
@@ -54,12 +56,21 @@
                 android:layerType="software" />
 
             <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_last_editing_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/dashed_divider"
                 android:text="@{viewModel.lastEditingDate}" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dashed_divider"
+                android:layout_toLeftOf="@id/tv_last_editing_time"
+                android:layout_toStartOf="@id/tv_last_editing_time"
+                android:text="@string/edited" />
 
         </RelativeLayout>
 

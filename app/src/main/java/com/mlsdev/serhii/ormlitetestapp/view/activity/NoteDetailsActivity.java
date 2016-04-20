@@ -26,6 +26,12 @@ public class NoteDetailsActivity extends BaseActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        viewModel.onStart();
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         viewModel.onPause(binding.etNoteTitle.getText().toString(), binding.etNoteDetails.getText().toString());
