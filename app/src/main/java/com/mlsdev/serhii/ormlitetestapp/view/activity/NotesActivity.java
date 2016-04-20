@@ -11,7 +11,8 @@ import com.mlsdev.serhii.ormlitetestapp.model.Note;
 import com.mlsdev.serhii.ormlitetestapp.view.adapter.NotesAdapter;
 import com.mlsdev.serhii.ormlitetestapp.viewmodel.NotesViewModel;
 
-public class NotesActivity extends BaseActivity implements NotesAdapter.OnItemClickListener {
+public class NotesActivity extends BaseActivity implements NotesAdapter.OnItemClickListener,
+        NotesAdapter.OnDataSetChangedListener {
     private ActivityNotesBinding binding;
     private NotesViewModel viewModel;
 
@@ -29,7 +30,7 @@ public class NotesActivity extends BaseActivity implements NotesAdapter.OnItemCl
         binding.rvNotes.setHasFixedSize(true);
         binding.rvNotes.setLayoutManager(new LinearLayoutManager(this));
         binding.rvNotes.setItemAnimator(new DefaultItemAnimator());
-        NotesAdapter notesAdapter = new NotesAdapter(this, this);
+        NotesAdapter notesAdapter = new NotesAdapter(this, this, this);
         notesAdapter.setOnItemClickListener(this);
         binding.rvNotes.setAdapter(notesAdapter);
         viewModel.setNotesAdapter(notesAdapter);
@@ -50,5 +51,10 @@ public class NotesActivity extends BaseActivity implements NotesAdapter.OnItemCl
     @Override
     public void onItemClick(Note note) {
         viewModel.onEditNote(note);
+    }
+
+    @Override
+    public void onDataSetChanged(int position) {
+        binding.rvNotes.scrollToPosition(position);
     }
 }

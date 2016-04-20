@@ -19,10 +19,14 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
     private Context context;
     private List<Note> noteList;
     private OnItemClickListener onItemClickListener;
+    private OnDataSetChangedListener onDataSetChangedListener;
+    private int selectedItem;
 
-    public NotesAdapter(Context context, OnItemClickListener onItemClickListener) {
+    public NotesAdapter(Context context, OnItemClickListener onItemClickListener,
+                        OnDataSetChangedListener onDataSetChangedListener) {
         this.context = context;
         this.onItemClickListener = onItemClickListener;
+        this.onDataSetChangedListener = onDataSetChangedListener;
         noteList = new ArrayList<>();
     }
 
@@ -56,13 +60,24 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
 
         @Override
         public void onClick(View view) {
+            selectedItem = getAdapterPosition();
             onItemClickListener.onItemClick(noteList.get(getAdapterPosition()));
         }
     }
 
     public void setData(List<Note> noteList) {
+        int currentListSize = this.noteList.size();
+        int newListSize = noteList.size();
         this.noteList = noteList;
-        notifyDataSetChanged();
+
+        if (currentListSize < newListSize) {
+            notifyItemInserted(0);
+            onDataSetChangedListener.onDataSetChanged(0);
+        } else if (currentListSize > newListSize) {
+            notifyItemRemoved(selectedItem);
+        } else {
+            notifyDataSetChanged();
+        }
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -71,5 +86,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
 
     public interface OnItemClickListener {
         void onItemClick(Note note);
+    }
+
+    public interface OnDataSetChangedListener {
+        void onDataSetChanged(int position);
     }
 }
