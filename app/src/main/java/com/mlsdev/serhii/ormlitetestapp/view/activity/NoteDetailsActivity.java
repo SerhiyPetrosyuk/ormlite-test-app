@@ -57,6 +57,13 @@ public class NoteDetailsActivity extends BaseActivity {
             case android.R.id.home:
                 finish();
                 break;
+            case R.id.note_menu_delete:
+                viewModel.onDeleteNote();
+                finish();
+                break;
+            case R.id.note_menu_share:
+                viewModel.shareNote();
+                break;
         }
 
         return super.onOptionsItemSelected(item);

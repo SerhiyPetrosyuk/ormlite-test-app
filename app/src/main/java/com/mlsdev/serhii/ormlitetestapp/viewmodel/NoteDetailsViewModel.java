@@ -1,6 +1,7 @@
 package com.mlsdev.serhii.ormlitetestapp.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.ObservableField;
 import android.text.TextUtils;
 
@@ -18,6 +19,7 @@ import java.sql.SQLException;
 public class NoteDetailsViewModel extends BaseViewModel {
     private Note note;
     private boolean isUpdating = false;
+    private boolean isNoteDeleted = false;
     public final ObservableField<String> title;
     public final ObservableField<String> description;
     public final ObservableField<String> lastEditingDate;
@@ -50,7 +52,32 @@ public class NoteDetailsViewModel extends BaseViewModel {
         insertUpdateNewNote(title, description);
     }
 
+    public void onDeleteNote() {
+        if (note != null && note.getId() > 0) {
+            isNoteDeleted = true;
+            try {
+                Dao<Note, Integer> notesDao = getDatabaseHelper().getNotesDao();
+                notesDao.delete(note);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void shareNote() {
+        Intent sharingIntent = new Intent();
+        sharingIntent.setAction(Intent.ACTION_SEND);
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, description.get());
+        sharingIntent.putExtra(Intent.EXTRA_TITLE, title.get());
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, title.get());
+        sharingIntent.setType("text/plain");
+        context.startActivity(Intent.createChooser(sharingIntent, "Share to:"));
+    }
+
     private void insertUpdateNewNote(String title, String description) {
+        if (isNoteDeleted)
+            return;
+
         Note newNote = new Note();
         newNote.setTitle(title);
         newNote.setDescription(description);
