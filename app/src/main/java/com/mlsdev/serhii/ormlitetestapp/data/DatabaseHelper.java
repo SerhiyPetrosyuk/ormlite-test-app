@@ -28,7 +28,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
-            TableUtils.clearTable(connectionSource, Note.class);
+            TableUtils.createTable(connectionSource, Note.class);
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Unable to create datbases", e);
         }
@@ -45,7 +45,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
-    public Dao<Note, Integer> getNotes() throws SQLException {
+    public Dao<Note, Integer> getNotesDao() throws SQLException {
         if (notes == null)
             notes = getDao(Note.class);
         return notes;
